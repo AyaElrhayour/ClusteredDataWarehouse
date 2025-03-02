@@ -16,5 +16,9 @@ spring:
 
 logging:
   level:
+    root: INFO
+    com.progressoft.clustereddatawarehouse: debug
+    org.springframework.web: error
     org.hibernate.SQL: debug
     org.hibernate.type.descriptor.sql: trace
+
