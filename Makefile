@@ -1,8 +1,11 @@
 run:
-    @docker compose up -d
+	@docker compose up -d
+
 down:
-    @docker compose down
+	@docker compose down
+
 test:
-    mvn test
+	mvn test
+
 clean:
-    mvn clean install
+	mvn clean install
