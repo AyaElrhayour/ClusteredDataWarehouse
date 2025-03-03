@@ -2,9 +2,9 @@ server:
   port: 8082
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/bloomberg
-    username: postgres
-    password: password
+    url: ${APP_DATASOURCE_URL}
+    username: ${APP_DATASOURCE_USERNAME}
+    password: ${APP_DATASOURCE_PASSWORD}
     driver-class-name: org.postgresql.Driver
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
@@ -17,8 +17,5 @@ spring:
 logging:
   level:
     root: INFO
-    com.progressoft.clustereddatawarehouse: debug
-    org.springframework.web: error
     org.hibernate.SQL: debug
     org.hibernate.type.descriptor.sql: trace
-

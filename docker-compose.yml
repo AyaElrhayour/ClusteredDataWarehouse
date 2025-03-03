@@ -1,0 +1,38 @@
+services:
+  server:
+    container_name: server
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8082:8082"
+    environment:
+      - APP_DATASOURCE_URL=jdbc:postgresql://psql-db:5432/bloomberg
+      - APP_DATASOURCE_USERNAME=postgres
+      - APP_DATASOURCE_PASSWORD=aya123
+    networks:
+      - clusterDataWarehouse
+    depends_on:
+      - psql-db
+  psql-db:
+    container_name: psql-db
+    image: "postgres:15"
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: "bloomberg"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "password"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - clusterDataWarehouse
+
+networks:
+  clusterDataWarehouse:
+    driver: bridge
+
+volumes:
+  postgres-data:
+    driver: local
